@@ -1,8 +1,9 @@
 screenOne = """
-Please select an option [1, 2, or 3]:
+Please select an option [1, 2, 3, or 4]:
     1. Create Key Pair
     2. Encrypt a File
     3. Decrypt a File
+    4. Exit
 """
 
 pubKeyWritePath = """
