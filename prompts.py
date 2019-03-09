@@ -40,3 +40,7 @@ Enter the filepath (relative or absolute) to read the plaintext from:
 pubKeyReadPath = """
 Enter the filepath (relative or absolute) to read the public key file from: 
 """
+
+priKeyReadPath = """
+Enter the filepath (relative or absolute) to read the private key file from: 
+"""

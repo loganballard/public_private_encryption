@@ -11,20 +11,22 @@ def fake32BitInt(num):
 # Getting a safely generated random prime using millerrabin
 # and 2 as a generator
 def getPrime(bitLength=31):
-    random = 0
+    done = False
     prime = 0
-    while not isPrime(prime):
+    while not done:
         random = getrandbits(bitLength)
-        if random % 12 != 5:
+        if (random % 12) != 5:
             continue
         prime = (2*random) + 1
+        if isPrime(prime) and prime > 2147483648:
+            done = True
     return prime
 
 # get the private key, which will be random number
-# between 0 and chosen prime
+# between 1 and chosen prime-2
 def getPriKey(userSeed, prime):
     seed(userSeed)
-    return randint(0, prime)
+    return randint(1, prime-2)
 
 # part 3 of public key
 def getE2(privateKey, prime, gen=GENERATOR):
@@ -37,10 +39,8 @@ def getKeys(seed=None):
     e2 = getE2(priKey, prime)
     gen = GENERATOR
     return {
-        'priKey': priKey,
-        'pubKey': {
-            'p': prime,
-            'g': gen,
-            'e2': e2
-        }
+        'd': priKey,
+        'p': prime,
+        'g': gen,
+        'e2': e2
     }

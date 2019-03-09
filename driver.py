@@ -1,6 +1,7 @@
 import prompts
 from keygen import getKeys
 from encrypt import encryptFile
+from decrypt import decryptFile
 
 def keyGeneration():
     pubPath = input(prompts.pubKeyWritePath)
@@ -8,11 +9,13 @@ def keyGeneration():
     seed = input(prompts.seedPrompt)
     keyDict = getKeys(seed)
     with open(pubPath, 'w') as pubKeyFile:
-        pubKeyFile.write(str(keyDict['pubKey']['p']) + "\n")
-        pubKeyFile.write(str(keyDict['pubKey']['g']) + "\n")
-        pubKeyFile.write(str(keyDict['pubKey']['e2']))
+        pubKeyFile.write(str(keyDict['p']) + "\n")
+        pubKeyFile.write(str(keyDict['g']) + "\n")
+        pubKeyFile.write(str(keyDict['e2']))
     with open(priPath, 'w') as priKeyFile:
-        priKeyFile.write(str(keyDict['priKey']))
+        priKeyFile.write(str(keyDict['p']) + "\n")
+        priKeyFile.write(str(keyDict['g']) + "\n")
+        priKeyFile.write(str(keyDict['d']))
 
 def fileEncrypt():
     plainPath = input(prompts.plainTextFile)
@@ -21,7 +24,10 @@ def fileEncrypt():
     encryptFile(plainPath, encWritePath, pubKeyPath)
 
 def fileDecrypt():
-    pass
+    encryptedPath = input(prompts.encTextFileRead)
+    decWritePath = input(prompts.decTextFile)
+    priKeyPath = input(prompts.priKeyReadPath)
+    decryptFile(encryptedPath, decWritePath, priKeyPath)
 
 def quitWithError():  
     print('Please select a real option (1,2,3)!')
