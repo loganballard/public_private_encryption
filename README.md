@@ -360,7 +360,8 @@ Enter the filepath (relative or absolute) to write the decrypted text file to:
 example/dec.txt
 
 Enter the filepath (relative or absolute) to read the private key file from:
-example/prikey.txt```
+example/prikey.txt
+```
 
 Decryption:
 ```
@@ -371,3 +372,4 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/loganballard/public_private_encryption.git
 git push -u origin master```
+```
